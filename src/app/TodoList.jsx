@@ -1,5 +1,6 @@
 import { useEffect, useContext } from "react";
 import { AuthContext } from "../App";
+import ToDoListItem from "./TodoListItem";
 
 export default function TodoList({ todoItems, setTodoItems }) {
   const { user } = useContext(AuthContext);
@@ -15,10 +16,14 @@ export default function TodoList({ todoItems, setTodoItems }) {
   if(!todoItems) return <h2>Loading...</h2>
 
   return (
-    <section>
+    <section className="container flex flex-col items-center justify-center w-full mx-auto
+    bg-violet-950 rounded-lg shadow mt-4">
+        <ul className="flex flex-col divide-y divide w-full">
       {todoItems.map(item => (
-        <p key={item.id}>{item.title}</p>
-      ))}
+
+        <ToDoListItem key={item.id} item = {item} />
+        ))}
+        </ul>
     </section>
   )
 }
